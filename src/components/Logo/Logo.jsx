@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/img/logo.svg';
 
 export default function Logo() {
     return(
@@ -8,8 +8,8 @@ export default function Logo() {
                 <img
                     src={`${logo}`}
                     alt="Logo"
-                    width="132"
-                    height="24"
+                    width="136"
+                    height="16"
                 />
             </NavLink>
         </div>

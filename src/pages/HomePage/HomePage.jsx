@@ -1,7 +1,24 @@
+import { useNavigate } from 'react-router';
+import RegularButton from '../../components/Button/RegularButton.jsx';
+import css from './HomePage.module.css';
+
 export default function HomePage() {
+    const navigate = useNavigate();
+
+    const navigateToCatalog = () => {
+        navigate('/campers');
+    }
+
     return (
-        <>
-            <h3>HomePage</h3>
-        </>
+        <div className={css.wrapper}>
+            <div className={css.container}>
+                <h1>Campers of your dreams</h1>
+                <h2>You can find everything you want in our catalog</h2>
+                <RegularButton
+                    name="View Now"
+                    clickHandler={navigateToCatalog}
+                />
+            </div>
+        </div>
     );
 }

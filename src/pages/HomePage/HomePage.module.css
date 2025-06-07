@@ -1,0 +1,37 @@
+.wrapper {
+    background-image: url("../../assets/img/home_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: var(--max-width);
+    height: calc(100vh - var(--header-height));
+    color: var(--white);
+}
+
+.container h1,
+.container h2 {
+    font-weight: 600;
+    color: var(--white-text);
+
+}
+
+.container h1 {
+    font-size: 48px;
+    line-height: 0.7;
+}
+
+.container h2 {
+    margin-top: 16px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.container button {
+    margin-top: 40px;
+}
