@@ -1,16 +1,18 @@
 import { Routes, Route } from 'react-router';
 import { lazy, Suspense } from 'react';
+import Logo from './components/Logo/Logo.jsx';
 import Navigation from './components/Navigation/Navigation.jsx';
-import HomePage from "./pages/HomePage/HomePage.jsx";
-import CampersPage from "./pages/CampersPage/CampersPage.jsx";
-import CamperDetailsPage from "./pages/CamperDetailsPage/CamperDetailsPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import HomePage from './pages/HomePage/HomePage.jsx';
+import CampersPage from './pages/CampersPage/CampersPage.jsx';
+import CamperDetailsPage from './pages/CamperDetailsPage/CamperDetailsPage.jsx';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx';
 import './App.css';
 
 function App() {
     return (
         <>
             <header>
+                <Logo />
                 <Navigation />
             </header>
             <main>
