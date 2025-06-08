@@ -14,10 +14,9 @@ export default function HomePage() {
             <div className={css.container}>
                 <h1>Campers of your dreams</h1>
                 <h2>You can find everything you want in our catalog</h2>
-                <RegularButton
-                    name="View Now"
-                    clickHandler={navigateToCatalog}
-                />
+                <RegularButton clickHandler={navigateToCatalog}>
+                    View Now
+                </RegularButton>
             </div>
         </div>
     );

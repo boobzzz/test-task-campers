@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    gap: 64px;
+    margin: 0 auto;
+    max-width: var(--max-width);
+}
+
+.sidebar {}
+
+.sidebar h3,
+.sidebar button {
+    margin-top: 30px;
+}
+
+.list {}

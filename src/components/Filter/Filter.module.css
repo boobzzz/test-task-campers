@@ -1,0 +1,48 @@
+.container {
+
+}
+
+.title {
+    padding-bottom: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    border-bottom: 1px solid var(--gray-50);
+    color: var(--black);
+}
+
+.filterList {
+    display: grid;
+    grid-template-columns: repeat(3, 112px);
+    grid-auto-rows: 96px;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+
+.filterItem span {
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.filterItem label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    border: 1px solid var(--gray-50);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.filterItem input {
+    display: none;
+}
+
+.filterItem input:checked + label {
+    border-color: var(--red);
+}
