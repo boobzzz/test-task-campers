@@ -6,7 +6,7 @@ export default function Loader() {
         <div className={css.container}>
             <RotateLoader
                 size={20}
-                color={'#535bf2'}
+                color={'#E44848'}
             />
         </div>
     );

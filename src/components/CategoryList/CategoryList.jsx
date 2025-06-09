@@ -11,7 +11,7 @@ export default function CategoryList({ categories }) {
                     key={category.id}
                     className={css.item}
                 >
-                    <svg className={css.icon} width="20" height="20">
+                    <svg width="20" height="20">
                         <use href={`${icons}${category.icon}`}></use>
                     </svg>
                     <p>{category.name}</p>

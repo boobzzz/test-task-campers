@@ -13,6 +13,10 @@
     margin-top: 30px;
 }
 
+.main {
+    width: 100%;
+}
+
 .list {
     display: flex;
     flex-direction: column;

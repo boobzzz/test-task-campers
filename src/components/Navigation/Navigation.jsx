@@ -12,7 +12,7 @@ export default function Navigation() {
             <NavLink to="/" className={linkClass}>
                 Home
             </NavLink>
-            <NavLink to="/campers" className={linkClass}>
+            <NavLink to="/catalog" className={linkClass}>
                 Catalog
             </NavLink>
         </nav>
