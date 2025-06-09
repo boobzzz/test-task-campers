@@ -1,8 +1,10 @@
 import Filter from '../../components/Filter/Filter.jsx';
 import RegularButton from '../../components/Button/RegularButton.jsx';
+import CatalogItem from '../../components/CatalogItem/CatalogItem.jsx';
 import css from './CampersPage.module.css';
 
 import { FILTER_TYPES, VEHICLE_EQUIPMENT, VEHICLE_TYPE } from '../../utils/constants.js';
+import campers from '../../campers.json';
 
 export default function CampersPage() {
     const checkedFilters = {
@@ -49,7 +51,13 @@ export default function CampersPage() {
                     Search
                 </RegularButton>
             </div>
-            <div className={css.list}></div>
+            <ul className={css.list}>
+                {campers.items.map((camper) => (
+                    <li key={camper.id}>
+                        <CatalogItem details={camper} />
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

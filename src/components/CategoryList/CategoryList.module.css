@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    height: 48px;
+    border-radius: 48px;
+    background-color: var(--gray-25);
+}
+
+.item p {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.icon {
+    /*stroke: currentColor;*/
+    /*fill: currentColor;*/
+}
