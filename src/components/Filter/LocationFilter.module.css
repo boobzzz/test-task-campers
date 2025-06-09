@@ -1,0 +1,24 @@
+.container {
+    position: relative;
+    margin-top: 16px;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+}
+
+.select {
+    padding-left: 48px;
+    width: 100%;
+    height: 56px;
+    border: none;
+    border-radius: 12px;
+    background-color: #F7F7F7;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: none;
+    outline: none;
+}

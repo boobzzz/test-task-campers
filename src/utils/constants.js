@@ -78,3 +78,13 @@ export const CATEGORIES = [
     { id: 'cat10', name: 'gas', icon: '#icon-stove' },
     { id: 'cat11', name: 'water', icon: '#icon-water' }
 ];
+
+export const CITIES = [
+    { id: 'city1', name: 'Kyiv' },
+    { id: 'city2', name: 'Poltava' },
+    { id: 'city3', name: 'Dnipro' },
+    { id: 'city4', name: 'Odesa' },
+    { id: 'city5', name: 'Kharkiv' },
+    { id: 'city6', name: 'Sumy' },
+    { id: 'city7', name: 'Lviv' }
+];

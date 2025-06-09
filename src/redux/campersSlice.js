@@ -35,18 +35,12 @@ const selectCampers = (state) => {
 };
 const selectFilter = (state) => selectFilters(state);
 
-export const selectFilteredCampers = createSelector([selectCampers, selectFilter], (campers, { location, equipment, type }) => {
-    return campers.filter(contact => {
+export const selectFilteredCampers = createSelector([selectCampers, selectFilter], (campers, filters) => {
+    return campers.filter((camper) => {
         let conditions = true;
-        if (location) {
-            conditions = contact.location === location;
-        }
-        if (type) {
-            conditions = contact.form === type;
-        }
-        if (equipment.length > 0) {
-            equipment.forEach((item) => {
-                conditions = conditions && item.value === contact[item.key];
+        if (Object.keys(filters).length > 0) {
+            Object.keys(filters).forEach((key) => {
+                conditions = conditions && (camper[key] === filters[key]);
             });
         }
         return conditions;

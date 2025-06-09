@@ -3,54 +3,53 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampers } from '../../redux/campersOps.js';
 import { updateFilter } from '../../redux/filtersSlice.js';
 import { selectFilteredCampers } from '../../redux/campersSlice.js';
+import LocationFilter from '../../components/Filter/LocationFilter.jsx';
 import Filter from '../../components/Filter/Filter.jsx';
 import RegularButton from '../../components/Button/RegularButton.jsx';
 import CatalogItem from '../../components/CatalogItem/CatalogItem.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import ErrorMessage from '../../components/Error/ErrorMessage.jsx';
-import css from './CampersPage.module.css';
 
+import css from './CampersPage.module.css';
 import { FILTER_TYPES, EQUIPMENT_FILTER, TYPE_FILTER } from '../../utils/constants.js';
 
-const checkedFilters = {
-    location: '',
-    equipment: [],
-    type: ''
-};
+let checkedFilters = {};
 
 export default function CampersPage() {
     const { loading, error } = useSelector(state => state.campers);
     const filteredCampers = useSelector(selectFilteredCampers);
     const dispatch = useDispatch();
 
-    const hasEquipment = (filterName) => {
-        return checkedFilters.equipment.find((item) => {
-            return item.key === filterName;
-        });
-    };
+    const locationFilterHandler = (cityName) => {
+        checkedFilters['location'] = cityName;
+    }
 
     const equipmentFilterHandler = (filterData) => {
-        if (hasEquipment(filterData.key)) {
-            checkedFilters.equipment = checkedFilters.equipment.filter((item) => {
-                return item.key !== filterData.key;
-            });
+        const filterKey = filterData.key;
+        if (Object.hasOwn(checkedFilters, filterKey)) {
+            checkedFilters = Object.keys(checkedFilters).reduce((acc, key) => {
+                if (filterData.key !== key) {
+                    acc[key] = checkedFilters[key];
+                }
+                return acc;
+            }, {});
+
             return;
         }
-        checkedFilters.equipment.push({
-            key: filterData.key,
-            value: EQUIPMENT_FILTER.find((item) => {
-                return item.key === filterData.key
-            }).value
-        });
+
+        checkedFilters[filterData.key] = EQUIPMENT_FILTER.find((item) => {
+            return item.key === filterData.key
+        }).value;
     }
 
     const typeFilterHandler = (filterData) => {
-        checkedFilters.type = TYPE_FILTER.find((item) => {
+        checkedFilters['form'] = TYPE_FILTER.find((item) => {
             return item.id === filterData.id
         }).value;
     }
 
     const onSearch = () => {
+        console.log(checkedFilters)
         dispatch(updateFilter(checkedFilters));
     }
 
@@ -61,6 +60,8 @@ export default function CampersPage() {
     return (
         <div className={css.container}>
             <div className={css.sidebar}>
+                <p>Location</p>
+                <LocationFilter getLocation={locationFilterHandler} />
                 <p>Filters</p>
                 <Filter
                     title="Vehicle equipment"
