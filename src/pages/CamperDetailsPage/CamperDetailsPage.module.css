@@ -1,0 +1,93 @@
+.container {
+    margin: 0 auto;
+    padding: 48px 0;
+    max-width: var(--max-width);
+}
+
+.mainHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mainHeader h2,
+.price p {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.subHeader {
+    display: flex;
+    gap: 16px;
+}
+
+.rating,
+.location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating p {
+    font-size: 16px;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+}
+
+.image {
+    width: 292px;
+    height: 312px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+}
+
+.desc {
+    margin-top: 28px;
+    font-size: 16px;
+    color: var(--slate);
+}
+
+.navigation {
+    margin-top: 56px;
+    border-bottom: 1px solid var(--gray-50);
+}
+
+.navigation nav {
+    display: flex;
+    gap: 24px;
+}
+
+.link {
+    padding-bottom: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--black);
+}
+
+.active {
+    border-bottom: 5px solid var(--orange);
+}
+
+.navigationContent {
+    display: flex;
+    gap: 48px;
+    padding: 48px 0;
+}

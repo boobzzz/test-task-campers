@@ -54,7 +54,6 @@ export default function CampersPage() {
     }
 
     const onSearch = () => {
-        console.log(checkedFilters)
         dispatch(updateFilter(checkedFilters));
     }
 
@@ -80,7 +79,10 @@ export default function CampersPage() {
                     params={TYPE_FILTER}
                     onChange={typeFilterHandler}
                 />
-                <RegularButton clickHandler={onSearch}>
+                <RegularButton
+                    type="button"
+                    clickHandler={onSearch}
+                >
                     Search
                 </RegularButton>
             </div>

@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage/HomePage.jsx';
 import CampersPage from './pages/CampersPage/CampersPage.jsx';
 import CamperDetailsPage from './pages/CamperDetailsPage/CamperDetailsPage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx';
+import FeaturesPage from './pages/FeaturesPage/FeaturesPage.jsx';
+import ReviewsPage from './pages/ReviewsPage/ReviewsPage.jsx';
 import './App.css';
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/catalog" element={<CampersPage />} />
                         <Route path="/catalog/:id" element={<CamperDetailsPage />}>
+                            <Route path="features" element={<FeaturesPage />} />
+                            <Route path="reviews" element={<ReviewsPage />} />
                         </Route>
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>

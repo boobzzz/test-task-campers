@@ -88,3 +88,12 @@ export const CITIES = [
     { id: 'city6', name: 'Sumy' },
     { id: 'city7', name: 'Lviv' }
 ];
+
+export const DETAILS = [
+    { id: 'det1', name: 'form' },
+    { id: 'det2', name: 'length' },
+    { id: 'det3', name: 'width' },
+    { id: 'det4', name: 'height' },
+    { id: 'det5', name: 'tank' },
+    { id: 'det6', name: 'consumption' }
+];

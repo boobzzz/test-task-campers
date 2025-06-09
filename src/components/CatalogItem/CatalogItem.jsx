@@ -6,8 +6,11 @@ import PropTypes from 'prop-types';
 
 import icons from '../../assets/img/icons.svg';
 import { CATEGORIES } from '../../utils/constants.js';
+import {useNavigate} from "react-router";
 
 export default function CatalogItem({ details }) {
+    const navigate = useNavigate();
+
     const getFavIcon = (isInFavourites) => {
         return isInFavourites ? `${icons}#icon-heart-red` : `${icons}#icon-heart-black`;
     };
@@ -22,6 +25,10 @@ export default function CatalogItem({ details }) {
                     icon: category.icon,
                 }
             });
+    }
+
+    const clickHandler = (id) => {
+        navigate(`/catalog/${id}`);
     }
 
     return (
@@ -59,7 +66,10 @@ export default function CatalogItem({ details }) {
                     {details.description}
                 </div>
                 <CategoryList categories={getCategories()} />
-                <RegularButton>
+                <RegularButton
+                    type="button"
+                    clickHandler={() => clickHandler(details.id)}
+                >
                     Show more
                 </RegularButton>
             </div>

@@ -11,3 +11,12 @@ export const fetchCampers = createAsyncThunk('campers/fetchAll', async (_, thunk
         return thunkAPI.rejectWithValue(error.response.data);
     }
 });
+
+export const fetchCamperDetails = createAsyncThunk('campers/fetchOne', async (id, thunkAPI) => {
+    try {
+        const response = await axios.get(`/campers${id}`);
+        return response.data.items;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
