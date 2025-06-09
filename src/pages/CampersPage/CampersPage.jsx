@@ -9,8 +9,8 @@ import RegularButton from '../../components/Button/RegularButton.jsx';
 import CatalogItem from '../../components/CatalogItem/CatalogItem.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import ErrorMessage from '../../components/Error/ErrorMessage.jsx';
-
 import css from './CampersPage.module.css';
+
 import { FILTER_TYPES, EQUIPMENT_FILTER, TYPE_FILTER } from '../../utils/constants.js';
 
 let checkedFilters = {};
@@ -21,25 +21,30 @@ export default function CampersPage() {
     const dispatch = useDispatch();
 
     const locationFilterHandler = (cityName) => {
-        checkedFilters['location'] = cityName;
+        if (cityName) {
+            checkedFilters['location'] = cityName;
+            return;
+        }
+        removeFilter('location');
     }
 
     const equipmentFilterHandler = (filterData) => {
-        const filterKey = filterData.key;
-        if (Object.hasOwn(checkedFilters, filterKey)) {
-            checkedFilters = Object.keys(checkedFilters).reduce((acc, key) => {
-                if (filterData.key !== key) {
-                    acc[key] = checkedFilters[key];
-                }
-                return acc;
-            }, {});
-
+        if (Object.hasOwn(checkedFilters, filterData.key)) {
+            removeFilter(filterData.key);
             return;
         }
-
         checkedFilters[filterData.key] = EQUIPMENT_FILTER.find((item) => {
             return item.key === filterData.key
         }).value;
+    }
+
+    const removeFilter = (filterKey) => {
+        checkedFilters = Object.keys(checkedFilters).reduce((acc, key) => {
+            if (filterKey !== key) {
+                acc[key] = checkedFilters[key];
+            }
+            return acc;
+        }, {});
     }
 
     const typeFilterHandler = (filterData) => {
