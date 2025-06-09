@@ -1,11 +1,12 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { fetchCampers } from './campersOps.js';
+import { fetchCampers, fetchCamperDetails } from './campersOps.js';
 import { selectFilters } from './filtersSlice.js';
 
 const campersSlice = createSlice({
     name: 'campers',
     initialState: {
         items: [],
+        details: {},
         loading: false,
         error: null
     },
@@ -13,6 +14,9 @@ const campersSlice = createSlice({
         builder
             .addCase(fetchCampers.fulfilled, (state, action) => {
                 state.items = action.payload;
+            })
+            .addCase(fetchCamperDetails.fulfilled, (state, action) => {
+                state.details = action.payload;
             })
             .addMatcher(({ type }) => type.endsWith('/pending'), (state) => {
                 state.loading = true;
