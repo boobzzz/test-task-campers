@@ -13,15 +13,15 @@ export default function CatalogItem({ details }) {
     };
 
     const getCategories = () => {
-        return CATEGORIES.filter((category) => {
-            if (details[category.name]) {
+        return CATEGORIES
+            .filter((category) => details[category.name])
+            .map((category) => {
                 return {
                     id: category.id,
                     name: typeof details[category.name] === 'string' ? details[category.name] : category.name,
                     icon: category.icon,
                 }
-            }
-        });
+            });
     }
 
     return (

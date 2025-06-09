@@ -6,7 +6,7 @@ export default function HomePage() {
     const navigate = useNavigate();
 
     const navigateToCatalog = () => {
-        navigate('/campers');
+        navigate('/catalog');
     }
 
     return (

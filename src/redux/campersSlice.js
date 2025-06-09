@@ -1,5 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { fetchCampers } from './campersOps.js';
+import { selectFilters } from './filtersSlice.js';
 
 const campersSlice = createSlice({
     name: 'campers',
@@ -28,3 +29,26 @@ const campersSlice = createSlice({
 });
 
 export const campersReducer = campersSlice.reducer;
+
+const selectCampers = (state) => {
+    return state.campers.items;
+};
+const selectFilter = (state) => selectFilters(state);
+
+export const selectFilteredCampers = createSelector([selectCampers, selectFilter], (campers, { location, equipment, type }) => {
+    return campers.filter(contact => {
+        let conditions = true;
+        if (location) {
+            conditions = contact.location === location;
+        }
+        if (type) {
+            conditions = contact.form === type;
+        }
+        if (equipment.length > 0) {
+            equipment.forEach((item) => {
+                conditions = conditions && item.value === contact[item.key];
+            });
+        }
+        return conditions;
+    });
+});

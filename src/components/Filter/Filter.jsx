@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import icons from '../../assets/img/icons.svg';
 import { FILTER_TYPES } from '../../utils/constants.js';
 
-export default function Filter({ title, params, type, onChange }) {
+export default function Filter({ title, type, params, onChange }) {
     const handleChange = (e) => {
         onChange({
             id: e.target.id,
-            type: type,
-            status: e.target.checked
+            key: e.target.name
         });
     };
 
@@ -18,13 +17,13 @@ export default function Filter({ title, params, type, onChange }) {
             <h3 className={css.title}>
                 {title}
             </h3>
-            <form className={css.filterList} id={title} onSubmit={handleChange}>
+            <ul className={css.filterList}>
                 {params.map((param) => (
-                    <div key={param.id} className={css.filterItem}>
+                    <li key={param.id} className={css.filterItem}>
                         <input
-                            type={type === FILTER_TYPES.MANY_OF_MANY ? "checkbox" : "radio"}
+                            type={type}
                             id={param.id}
-                            name={title}
+                            name={param.key}
                             onChange={handleChange}
                         />
                         <label htmlFor={param.id}>
@@ -33,20 +32,22 @@ export default function Filter({ title, params, type, onChange }) {
                             </svg>
                             <span>{param.name}</span>
                         </label>
-                    </div>
+                    </li>
                 ))}
-            </form>
+            </ul>
         </div>
     );
 }
 
 Filter.propTypes = {
     title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf([FILTER_TYPES.CHECKBOX, FILTER_TYPES.RADIO]).isRequired,
     params: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
+        key: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired,
         icon: PropTypes.string.isRequired
     })).isRequired,
-    type: PropTypes.oneOf([FILTER_TYPES.ONE_OF_MANY, FILTER_TYPES.MANY_OF_MANY]).isRequired,
     onChange: PropTypes.func.isRequired,
 };

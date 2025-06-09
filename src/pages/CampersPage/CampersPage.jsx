@@ -1,40 +1,57 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCampers } from '../../redux/campersOps.js';
+import { updateFilter } from '../../redux/filtersSlice.js';
+import { selectFilteredCampers } from '../../redux/campersSlice.js';
 import Filter from '../../components/Filter/Filter.jsx';
 import RegularButton from '../../components/Button/RegularButton.jsx';
 import CatalogItem from '../../components/CatalogItem/CatalogItem.jsx';
-import Loader from "../../components/Loader/Loader.jsx";
-import ErrorMessage from "../../components/Error/ErrorMessage.jsx";
+import Loader from '../../components/Loader/Loader.jsx';
+import ErrorMessage from '../../components/Error/ErrorMessage.jsx';
 import css from './CampersPage.module.css';
 
-import { FILTER_TYPES, VEHICLE_EQUIPMENT, VEHICLE_TYPE } from '../../utils/constants.js';
+import { FILTER_TYPES, EQUIPMENT_FILTER, TYPE_FILTER } from '../../utils/constants.js';
+
+const checkedFilters = {
+    location: '',
+    equipment: [],
+    type: ''
+};
 
 export default function CampersPage() {
-    const { items, loading, error } = useSelector(state => state.campers);
+    const { loading, error } = useSelector(state => state.campers);
+    const filteredCampers = useSelector(selectFilteredCampers);
     const dispatch = useDispatch();
-    const checkedFilters = {
-        location: '',
-        equipment: [],
-        type: ''
+
+    const hasEquipment = (filterName) => {
+        return checkedFilters.equipment.find((item) => {
+            return item.key === filterName;
+        });
     };
 
-    const filterHandler = (filterData) => {
-        if (filterData.type === FILTER_TYPES.MANY_OF_MANY) {
-            if (checkedFilters.equipment.includes(filterData.id)) {
-                checkedFilters.equipment = checkedFilters.equipment.filter((filter) => {
-                    return filter !== filterData.id;
-                });
-                return;
-            }
-            checkedFilters.equipment.push(filterData.id);
+    const equipmentFilterHandler = (filterData) => {
+        if (hasEquipment(filterData.key)) {
+            checkedFilters.equipment = checkedFilters.equipment.filter((item) => {
+                return item.key !== filterData.key;
+            });
             return;
         }
-        checkedFilters.type = filterData.id;
+        checkedFilters.equipment.push({
+            key: filterData.key,
+            value: EQUIPMENT_FILTER.find((item) => {
+                return item.key === filterData.key
+            }).value
+        });
+    }
+
+    const typeFilterHandler = (filterData) => {
+        checkedFilters.type = TYPE_FILTER.find((item) => {
+            return item.id === filterData.id
+        }).value;
     }
 
     const onSearch = () => {
-        console.log(checkedFilters);
+        dispatch(updateFilter(checkedFilters));
     }
 
     useEffect(() => {
@@ -47,15 +64,15 @@ export default function CampersPage() {
                 <p>Filters</p>
                 <Filter
                     title="Vehicle equipment"
-                    params={VEHICLE_EQUIPMENT}
-                    type={FILTER_TYPES.MANY_OF_MANY}
-                    onChange={filterHandler}
+                    type={FILTER_TYPES.CHECKBOX}
+                    params={EQUIPMENT_FILTER}
+                    onChange={equipmentFilterHandler}
                 />
                 <Filter
                     title="Vehicle type"
-                    params={VEHICLE_TYPE}
-                    type={FILTER_TYPES.ONE_OF_MANY}
-                    onChange={filterHandler}
+                    type={FILTER_TYPES.RADIO}
+                    params={TYPE_FILTER}
+                    onChange={typeFilterHandler}
                 />
                 <RegularButton clickHandler={onSearch}>
                     Search
@@ -64,8 +81,8 @@ export default function CampersPage() {
             <div className={css.main}>
                 {loading && <Loader />}
                 {error && <ErrorMessage message={error} />}
-                {items.length > 0 && <ul className={css.list}>
-                    {items.map((camper) => (
+                {filteredCampers.length > 0 && <ul className={css.list}>
+                    {filteredCampers.map((camper) => (
                         <li key={camper.id}>
                             <CatalogItem details={camper}/>
                         </li>
