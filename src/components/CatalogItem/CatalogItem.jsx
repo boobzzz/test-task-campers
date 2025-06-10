@@ -1,12 +1,12 @@
+import { useNavigate } from 'react-router';
 import RegularButton from '../Button/RegularButton.jsx';
 import FormatedPrice from '../FormatedPrice/FormatedPrice.jsx';
-import CategoryList from "../CategoryList/CategoryList.jsx";
+import CategoryList from '../CategoryList/CategoryList.jsx';
 import css from './CatalogItem.module.css';
 import PropTypes from 'prop-types';
 
 import icons from '../../assets/img/icons.svg';
 import { CATEGORIES } from '../../utils/constants.js';
-import {useNavigate} from "react-router";
 
 export default function CatalogItem({ details }) {
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ export default function CatalogItem({ details }) {
                 <img src={details.gallery[0].thumb} alt="camper image"/>
             </div>
             <div className={css.details}>
-                <div className={css.header}>
+                <div>
                     <div className={css.mainHeader}>
                         <h2>{details.name}</h2>
                         <div className={css.price}>

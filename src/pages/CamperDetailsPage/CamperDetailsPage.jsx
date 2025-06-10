@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { NavLink, Outlet, useParams } from 'react-router';
 import {useDispatch, useSelector} from 'react-redux';
 import FormatedPrice from '../../components/FormatedPrice/FormatedPrice.jsx';
-import BookForm from '../../components/BookForm/BookForm.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import ErrorMessage from '../../components/Error/ErrorMessage.jsx';
 import { fetchCamperDetails } from "../../redux/campersOps.js";

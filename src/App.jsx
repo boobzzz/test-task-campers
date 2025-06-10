@@ -4,7 +4,6 @@ import Logo from './components/Logo/Logo.jsx';
 import Navigation from './components/Navigation/Navigation.jsx';
 import HomePage from './pages/HomePage/HomePage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx';
-import './App.css';
 
 const CampersPage = lazy(() => import('./pages/CampersPage/CampersPage.jsx'));
 const CamperDetailsPage = lazy(() => import('./pages/CamperDetailsPage/CamperDetailsPage.jsx'));

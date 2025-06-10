@@ -13,7 +13,7 @@ export default function Filter({ title, type, params, onChange }) {
     };
 
     return (
-        <div className={css.container}>
+        <div>
             <h3 className={css.title}>
                 {title}
             </h3>

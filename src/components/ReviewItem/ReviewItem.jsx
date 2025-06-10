@@ -1,10 +1,11 @@
 import css from './ReviewItem.module.css';
-import PropTypes from "prop-types";
-import icons from "../../assets/img/icons.svg";
+import PropTypes from 'prop-types';
+
+import icons from '../../assets/img/icons.svg';
 
 export default function ReviewItem({ review }) {
     return (
-        <div className={css.container}>
+        <div>
             <div className={css.header}>
                 <div className={css.avatar}>
                     <span>
